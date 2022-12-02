@@ -4,33 +4,25 @@ declare(strict_types=1);
 
 use PhpCsFixer\Fixer\Basic\NonPrintableCharacterFixer;
 use PhpCsFixer\Fixer\Strict\DeclareStrictTypesFixer;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Symplify\EasyCodingStandard\Config\ECSConfig;
 use Symplify\EasyCodingStandard\ValueObject\Option;
+use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
-$genericCodingStandards = static function (ContainerConfigurator $containerConfigurator): void {
-	$parameters = $containerConfigurator->parameters();
-	$parameters->set(
-		Option::SETS,
-		[
-			'psr12',
-			'common',
-		]
-	);
-	$parameters->set(Option::LINE_ENDING, '\n');
-	$parameters->set(Option::INDENTATION, Option::INDENTATION_TAB);
+$genericCodingStandards = static function (ECSConfig $ecsConfig): void {
+    $ecsConfig->sets([
+        SetList::PSR_12,
+        SetList::COMMON
+    ]);
+
+    $ecsConfig->indentation(Option::INDENTATION_TAB);
+    $ecsConfig->lineEnding('\n');
 };
 
-
-return static function (ContainerConfigurator $containerConfigurator) use (
+return static function (ECSConfig $ecsConfig) use (
 	$genericCodingStandards
 ): void {
-	$genericCodingStandards($containerConfigurator);
+	$genericCodingStandards($ecsConfig);
 
-	$services = $containerConfigurator->services();
-	$parameters = $containerConfigurator->parameters();
-
-	$services->set(DeclareStrictTypesFixer::class)
-		->property('spacesCountAroundEqualsSign', 0);
-
-	$services->set(NonPrintableCharacterFixer::class);
+    $ecsConfig->rule(NonPrintableCharacterFixer::class);
+    $ecsConfig->ruleWithConfiguration(DeclareStrictTypesFixer::class, ['spacesCountAroundEqualsSign' => 0]);
 };
