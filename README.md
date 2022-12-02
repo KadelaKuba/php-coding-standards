@@ -43,10 +43,20 @@ declare(strict_types=1);
 use Symplify\EasyCodingStandard\Config\ECSConfig;
 
 return static function (ECSConfig $ecsConfig): void {
-    $ecsConfig->import(__DIR__ . '/vendor/trayto-com/php-coding-standards/definitions/ecs-default.php');
+    $ecsConfig->import(TraytoSetList::TRAYTO_DEFAULT);
 
     $ecsConfig->rule(<NAME_OF_RULE>);
 
     $ecsConfig->cacheDirectory(__DIR__ . '/temp/ecs');
 };
 ```
+
+### Prepared set 
+For all registered rules in prepared set lists check the related config files (for example `ecs-default.php`).
+
+- **TraytoSetList::TRAYTO_DEFAULT**
+  - default rules for project - includes mainly PSR12 standards and some basic rules
+
+
+- **TraytoSetList::TRAYTO_EXTENDED**
+  - more strict rules for code structure
