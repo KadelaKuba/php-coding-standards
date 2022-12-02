@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+    cs-coding-standards:
+        tty: true
+        build:
+            context: .
+            dockerfile: docker/Dockerfile
+            target: base
+        container_name: cs-php-fpm
+        volumes:
+            - .:/var/www
