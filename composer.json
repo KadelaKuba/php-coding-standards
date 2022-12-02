@@ -8,11 +8,18 @@
     {
       "name": "Jakub Dolba",
       "email": "jakub.dolba@trayto.com"
+    },
+    {
+      "name": "Jakub Kadela",
+      "email": "jakub.kadela@trayto.com"
     }
   ],
   "require": {
-    "symplify/easy-coding-standard-prefixed": "^8.3",
-    "php-parallel-lint/php-parallel-lint": "^1.2"
+    "php-parallel-lint/php-parallel-lint": "^1.2",
+    "symplify/easy-coding-standard": "^11.1"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-latest"
   },
   "scripts": {
     "standards": [
