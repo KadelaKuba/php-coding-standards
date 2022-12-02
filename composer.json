@@ -16,7 +16,8 @@
   ],
   "require": {
     "php-parallel-lint/php-parallel-lint": "^1.2",
-    "symplify/easy-coding-standard": "^11.1"
+    "symplify/easy-coding-standard": "^11.1",
+    "slevomat/coding-standard": "^8.6"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest"
@@ -32,5 +33,10 @@
     "ecs-md": "ecs check-markdown README.md definitions/ecs-default.php",
     "ecs-md-fix": "ecs check-markdown README.md definitions/ecs-default.php --fix",
     "lint": "parallel-lint --exclude vendor ."
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
   }
 }
