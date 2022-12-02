@@ -36,23 +36,17 @@ Recommended is to create your own configuration for project and define cache fol
 
  Create php file in your project root, for example `ecs.php`:
 ```php
-<?php declare(strict_types=1);
+<?php
 
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+declare(strict_types=1);
 
-return static function (ContainerConfigurator $configurator): void {
-    // make sure you import correct file
-	$configurator->import(__DIR__ . '/vendor/trayto-com/php-coding-standards/definitions/ecs-default.php');
+use Symplify\EasyCodingStandard\Config\ECSConfig;
 
-	$services = $configurator->services();
-	// ... customise your services
+return static function (ECSConfig $ecsConfig): void {
+    $ecsConfig->import(__DIR__ . '/vendor/trayto-com/php-coding-standards/definitions/ecs-default.php');
 
-	$parameters = $configurator->parameters();
-	// .. customise your parameters
+    $ecsConfig->rule(<NAME_OF_RULE>);
 
-	$parameters->set(
-		Option::CACHE_DIRECTORY,
-		__DIR__ . '/temp/ecs'
-	);
+    $ecsConfig->cacheDirectory(__DIR__ . '/temp/ecs');
 };
 ```
